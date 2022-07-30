@@ -16,18 +16,18 @@ function App() {
 				const json = await response.json();
 
 				for (let i = 1; i < json.length; i++) {
-					var jsonObject = json[i].replaceAll(`'`, `"`);
-					console.log(jsonObject);
-					var parsedJson = JSON.parse(jsonObject);
-					console.log(parsedJson.id);
+					console.log(json[i].id);
+					const fname = "placeholder";
+					const submitURL = "http://localhost:3005/addRental/?gameId="+json[i].id+"&rentalUser="+fname;
 					render (
 						<div>
-							<img src={parsedJson.img} width="200" height="300" />
-							<h1>{parsedJson.title}</h1>
-							<h2>{parsedJson.console.join(' ')}</h2>
-							<p>{parsedJson.released}</p>
-							<p>{parsedJson.rating}</p>
-							<p>{parsedJson.descrip}</p>
+							<img src={json[i].img} width="200" height="300" />
+							<h1>{json[i].title}</h1>
+							<h2>{json[i].console.join(' ')}</h2>
+							<p>{json[i].released}</p>
+							<p>{json[i].rating}</p>
+							<p>{json[i].descrip}</p>
+							<a href={submitURL}>Rent Here</a>
 
 						</div>
 						
