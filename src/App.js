@@ -10,6 +10,9 @@ function App() {
 		//or edit the url here and in package.json
 		//CORS must be working (should be in the api)
 		const url = "http://localhost:5000/games"
+		const queryParams = new URLSearchParams(window.location.search);
+    	const userName = queryParams.get('name');
+    	console.log(userName);
 		const fetchData = async () => {
 			try {
 				const response = await fetch(url);
@@ -17,8 +20,8 @@ function App() {
 
 				for (let i = 1; i < json.length; i++) {
 					console.log(json[i].id);
-					const fname = "placeholder";
-					const submitURL = "http://localhost:3005/addRental/?gameId="+json[i].id+"&rentalUser="+fname;
+					
+					const submitURL = "http://localhost:3005/addRental/?gameId="+json[i].id+"&rentalUser="+userName;
 					render (
 						<div>
 							<img src={json[i].img} width="200" height="300" />
