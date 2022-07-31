@@ -1,5 +1,6 @@
 # Games micro frontend component
 ### Displays the games available 
+localhost:3001?name=NAMEHERE
 ##### Docker run command
 ```
 docker run \
