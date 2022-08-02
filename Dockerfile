@@ -1,21 +1,3 @@
-# pull official base image
-#macos: DOCKER_BUILDKIT=0 docker build ...
-FROM node:18.6.0
+FROM nginx:stable-alpine
 
-# set working directory
-WORKDIR /app
-
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
-
-# install app dependencies
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm install --silent
-RUN npm install react-scripts@5.0.1 -g --silent
-
-# add app
-COPY . ./
-
-# start app
-CMD ["npm", "start"]
+ADD build /usr/share/nginx/html
