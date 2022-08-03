@@ -22,6 +22,9 @@ function App() {
 					console.log(json[i].id);
 					
 					const submitURL = "http://localhost:3005/addRental/?gameId="+json[i].id+"&rentalUser="+userName;
+					const reviewURL = "http://localhost:3007/reviews/"+json[i].id;
+					const review = await fetch(reviewURL);
+					const reviewJSON = await review.json();
 					render (
 						<div>
 							<img src={json[i].img} width="200" height="300" />
@@ -30,6 +33,7 @@ function App() {
 							<p>{json[i].released}</p>
 							<p>{json[i].rating}</p>
 							<p>{json[i].descrip}</p>
+							<p>User Average Review Score: {reviewJSON.totalStars}/5 stars</p>
 							<a href={submitURL}>Rent Here</a>
 
 						</div>
