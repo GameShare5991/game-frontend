@@ -13,6 +13,19 @@ function App() {
         const queryParams = new URLSearchParams(window.location.search);
         const userName = queryParams.get('name');
         console.log(userName);
+
+		const topLinks = async () => {
+			const userName = queryParams.get('name');
+			const buyURL = "http://localhost:4007/?name="+userName;
+			const rentURL = "http://localhost:3006/?user="+userName;
+			render(
+				<div>
+				<a href={rentURL}>View Rentals</a>
+				<a href={buyURL}>View Purchases</a>
+				</div>
+			)
+		}
+
         const fetchData = async () => {
             try {
                 const response = await fetch(url);
@@ -61,6 +74,7 @@ function App() {
             }
 
         };
+		topLinks();
         fetchData();
     }, []);
 
